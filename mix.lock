@@ -1,0 +1,3 @@
+%{
+  "eex_html": {:hex, :eex_html, "1.0.0", "c88020b584d5bfc48ef6c18176af2cfed558225fc5290b435e73119b8ce98ce0", [:mix], [{:jason, "~> 1.0", [hex: :jason, repo: "hexpm", optional: true]}], "hexpm", "7e8c0fa7228f69b30392905cd3551b38b5c8ba58c3ae4a0a9cfe7aa22fc15d32"},
+}
