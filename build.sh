@@ -2,7 +2,12 @@
 # exit on error
 set -o errexit
 
+wget http://www.erlang.org/download/otp_src_23.2.tar.gz
 
-mix deps.get
+tar -zxf otp_src_23.2.tar.gz
 
-mix blog_generator.build
+cd otp_src_23.2
+
+./configure --prefix "$XDG_CACHE_HOME/opt/erlang/23.2"
+
+make install
