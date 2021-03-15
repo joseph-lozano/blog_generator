@@ -1,7 +1,6 @@
 ---
 title: "Schulze Voting"
 description: A side project
-layout: post.njk
 tags:
   - post
 ---

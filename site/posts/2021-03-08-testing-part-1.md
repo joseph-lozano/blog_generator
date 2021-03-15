@@ -2,7 +2,6 @@
 title: "Testing with Elixir Part 1: GenServers"
 permalink: testing-with-elixir-part-1.html
 description: How to test processes and GenServers
-layout: post.njk
 tags:
   - post
   - testing

@@ -1,7 +1,6 @@
 ---
 title: Testing with Elixir Part 0
 description: The basic anatomy of a test
-layout: post.njk
 tags:
   - post
   - testing

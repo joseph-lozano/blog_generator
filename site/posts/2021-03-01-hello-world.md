@@ -1,7 +1,6 @@
 ---
 title: Hello World
 description: My very first post
-layout: post.njk
 tags: post
 ---
 

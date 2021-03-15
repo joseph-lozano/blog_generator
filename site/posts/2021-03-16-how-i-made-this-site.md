@@ -1,7 +1,6 @@
 ---
 title: How I Made This Site
-description: A sprinkle of JS, and... well it's all JS
-layout: post.njk
+description: An ill-advised adventure into static site generation
 tags: post
 ---
 

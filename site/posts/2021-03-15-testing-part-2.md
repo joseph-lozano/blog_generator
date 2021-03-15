@@ -2,17 +2,15 @@
 title: "Testing with Elixir Part 2"
 permalink: testing-with-elixir-part-2.html
 description: How to test processes and GenServers
-layout: post.njk
-draft: true
 tags:
   - post
   - testing
 ---
 
-In [Part 0](/testing-with-elixir-part-0.html) we looked at the basic anatomy of a test: **given**, **when**, and **then**. Now we will put that into action.
+In [Part 0](/testing-with-elixir-part-0) we looked at the basic anatomy of a test: **given**, **when**, and **then**. In [Part 1](/testing-with-elixir-part1) we learned about `start_supervisor`. Now we will put these into action.
 
-
-Very easy. But that that is because this is a simple GenServer. What if instead of a counter, our GenServer was rate-limiting API calls?
+In part 1, our GenServer was straight-forward to test because it was so simple.
+What if instead of a counter, our GenServer was rate-limiting API calls?
 
 ```elixir
 defmodule RateLimiter do
@@ -21,7 +19,7 @@ defmodule RateLimiter do
 
   ### API
 
-  def start_link() do
+  def start_link(_) do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
@@ -59,7 +57,7 @@ end
 
 The meat of the module is in the `handle_call(:get, ...)` function. If the time since the last request is greater than the minimum time we should wait. We need to pause until that amount of time has passed.
 
-This is obviously not production quality code, as there are way too many edge-cases not handled, but it is complex enough to really make us wonder how we are going to test this.
+This is obviously not production quality code, as there are way too many edge-cases not handled, (and performance is terrible) but it is complex enough to really make us wonder how we are going to test this.
 
 Here's the dirty secret: We can't test this. At least not safely. Any test of the `get()` function will call an external API. Bad news considering this is the same API we are trying to rate-limit!
 
@@ -70,7 +68,7 @@ First things first, let's not worry about rate-limiting at all. Let's just make 
 ```elixir
 test "can call API.get()" do
   # Given a rate limiter
-  rate_limiter = RateLimiter.start_link()
+  _rate_limiter = start_supervised!({RateLimiter, []}
 
   # When I call get
   actual = RateLimiter.get()
@@ -94,7 +92,7 @@ An our given changes ever so slightly
 
 ```elixir
   # Given a rate limiter
-  rate_limiter = RateLimiter.start_link(%{api: FakeAPI})
+  _rate_limiter = start_supervised!({RateLimiter, %{api: FakeAPI}})
 ```
 
 Our implementation code:
@@ -122,12 +120,12 @@ end
 
 And our test should pass! By injecting our API dependency into the GenServer, we made our module much more testable.
 
-We can test the rate-limiting quite easily by also injecting it. We can also leverage processes to capture exactly when a request was received. Here's what the test looks like.
+We can test the rate-limiting quite easily by also injecting the time. We can also leverage processes to capture exactly when a request was received. Here's what the test looks like.
 
 ```elixir
 test "rate limits API calls" do
   timer = :timer.seconds(0.1)
-  rate_limiter = RateLimiter.start_link(%{api: FakeAPI, timer: timer)})
+  _rate_limiter = start_supervised!({RateLimiter, %{api: FakeAPI, timer: timer}})
 
   send_request = fn pid ->
     Task.async(fn ->
@@ -145,8 +143,6 @@ test "rate limits API calls" do
   assert NaiveDateTime.diff(time_a, time_b, :milliseconds) >  timer
 end
 ```
-
-# TODO: Rope in `start_supervised`
 
 Final code:
 
@@ -241,3 +237,5 @@ defmodule RateLimiterTest do
   end
 end
 ```
+
+Thanks for reading
