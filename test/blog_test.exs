@@ -1,4 +1,5 @@
 defmodule BlogTest do
+  @moduledoc false
   use ExUnit.Case
   doctest Blog
 

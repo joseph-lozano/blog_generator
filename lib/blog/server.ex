@@ -14,7 +14,6 @@ defmodule Blog.Server do
   plug(:not_found)
 
   def not_found(conn, _) do
-    IO.inspect(conn)
     send_resp(conn, 404, "not found")
   end
 end

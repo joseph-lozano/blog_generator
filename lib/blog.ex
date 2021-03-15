@@ -1,4 +1,7 @@
 defmodule Blog do
+  @moduledoc """
+  Top level Blog Context
+  """
   alias Blog.Post
 
   @source_dir "site"
