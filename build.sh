@@ -56,6 +56,9 @@ cd "$PROJECT_DIR"
 
 export MIX_ENV=PROD
 
+# We don't need the server and leaving it in causes compilation issues
+rm lib/blog/server.ex
+
 # Install hex and rebar"
 mix local.hex --force
 mix local.rebar --force

@@ -21,7 +21,7 @@ defmodule Blog.MixProject do
   def application do
     [
       mod: {Blog.Application, []},
-      extra_applications: [:logger]
+      extra_applications: [:logger, :eex]
     ]
   end
 
@@ -33,7 +33,7 @@ defmodule Blog.MixProject do
       {:earmark, "~> 1.4"},
       {:yaml_elixir, "~> 2.6"},
       {:typed_struct, "~> 0.2.1"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0", only: [:dev]}
     ]
   end
 end
