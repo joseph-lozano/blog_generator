@@ -56,8 +56,9 @@ cd "$PROJECT_DIR"
 
 export MIX_ENV=PROD
 
-# Install hex"
+# Install hex and rebar"
 mix local.hex --force
+mix local.rebar --force
 
 # Get deps
 mix deps.get --only prod
