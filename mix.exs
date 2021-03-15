@@ -9,7 +9,7 @@ defmodule BlogGenerator.MixProject do
       elixirc_options: elixirc_options(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      dialyzer: [plt_add_apps: [:mix]]
+      dialyzer: [plt_add_apps: [:mix, :eex]]
     ]
   end
 
@@ -27,7 +27,7 @@ defmodule BlogGenerator.MixProject do
   defp deps do
     [
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:eex_html, "~> 1.0"},
+      {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:earmark, "~> 1.4"},
       {:yaml_elixir, "~> 2.6"},
       {:typed_struct, "~> 0.2.1"}

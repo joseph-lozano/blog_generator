@@ -1,4 +1,6 @@
 defmodule Mix.Tasks.Blog.Build do
+  @moduledoc false
+
   use Mix.Task
 
   alias Blog.Post

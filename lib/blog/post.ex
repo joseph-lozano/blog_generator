@@ -1,4 +1,7 @@
 defmodule Blog.Post do
+  @moduledoc """
+  Struct for Posts
+  """
   use TypedStruct
 
   typedstruct do
