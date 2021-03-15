@@ -1,6 +1,6 @@
-defmodule BlogGenerator do
+defmodule Blog do
   @moduledoc """
-  Documentation for `BlogGenerator`.
+  Documentation for `Blog`.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule BlogGenerator do
 
   ## Examples
 
-      iex> BlogGenerator.hello()
+      iex> Blog.hello()
       :world
 
   """

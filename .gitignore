@@ -22,7 +22,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-blog_generator-*.tar
+blog-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/

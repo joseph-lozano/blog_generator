@@ -1,9 +1,9 @@
-defmodule BlogGenerator.MixProject do
+defmodule Blog.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :blog_generator,
+      app: :blog,
       version: "0.1.0",
       elixir: "~> 1.11",
       elixirc_options: elixirc_options(Mix.env()),
