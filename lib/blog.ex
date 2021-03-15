@@ -90,7 +90,7 @@ defmodule Blog do
       content =
         EEx.eval_file("#{@source_dir}/post.html.eex", post: post, inner_content: inner_content)
 
-      File.write("#{@dest_dir}/#{post.slug}.html", content, [:write, :utf8])
+      File.write("#{@dest_dir}/#{post.slug}.html", content, [:write])
 
       post
     end)
@@ -98,7 +98,7 @@ defmodule Blog do
 
   defp make_index(posts) do
     content = EEx.eval_file("#{@source_dir}/index.html.eex", posts: posts)
-    File.write("#{@dest_dir}/index.html", content, [:write, :utf8])
+    File.write("#{@dest_dir}/index.html", content, [:write])
   end
 
   @spec date(String.t(), String.t(), String.t()) :: Date.t()
