@@ -1,7 +1,22 @@
 <h1>Blog</h1>
 
-<h1>My Blog</h1>
+<!doctype html>
 
-<%= for post <- posts  do %>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Blog</title>
+  <meta name="description" content="My Blog">
+  <meta name="author" content="Joseph Lozano">
+
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+
+<h1 class="bg-red-200">My Blog</h1>
+
+<%= for post <- posts do %>
   <a href="<%= "/#{post}" %>"><%= post %></a>
 <% end %>

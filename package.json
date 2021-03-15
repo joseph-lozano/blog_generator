@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "dev": "http-server _site",
+    "build": "NODE_ENV=production postcss site/styles/tailwind.css --o _site/styles.css && cleancss _site/styles.css -o _site/styles.css"
+  },
+  "devDependencies": {
+    "alpinejs": "^2.8.1",
+    "autoprefixer": "^10.2.4",
+    "clean-css-cli": "^5.2.0",
+    "html-minifier": "^4.0.0",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3",
+    "@tailwindcss/typography": "^0.4.0",
+    "http-server": "^0.12.3"
+  }
+}

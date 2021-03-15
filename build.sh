@@ -64,3 +64,7 @@ mix deps.get --only prod
 
 # Build
 mix blog.build
+
+# assets
+npm install
+npm run build
