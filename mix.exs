@@ -23,7 +23,8 @@ defmodule BlogGenerator.MixProject do
   defp deps do
     [
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
-      {:eex_html, "~> 1.0"}
+      {:eex_html, "~> 1.0"},
+      {:earmark, "~> 1.4"}
     ]
   end
 end

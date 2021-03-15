@@ -1,0 +1,7 @@
+<h2>Post Layout</h2>
+
+<div class="prose">
+<%= inner_content %>
+<div>
+
+<p>End</p>
