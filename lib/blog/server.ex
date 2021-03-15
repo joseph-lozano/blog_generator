@@ -2,18 +2,37 @@ defmodule Blog.Server do
   @moduledoc """
   Server _site for development purposes
   """
-  import Plug.Conn
 
-  use Plug.Builder
+  use Plug.Router
 
-  plug(Plug.Static,
-    at: "/",
-    from: "_site"
-  )
+  plug(:match)
+  plug(:dispatch)
 
-  plug(:not_found)
+  @files File.ls!("_site")
 
-  def not_found(conn, _) do
+  get "/" do
+    send_file(conn, "index.html")
+  end
+
+  get("/styles.css") do
+    send_file(conn, "styles.css")
+  end
+
+  get "/:slug" do
+    file_name = "#{slug}.html"
+
+    if file_name in @files do
+      send_file(conn, file_name)
+    else
+      send_resp(conn, 404, "not found")
+    end
+  end
+
+  match _ do
     send_resp(conn, 404, "not found")
+  end
+
+  defp send_file(conn, file) do
+    send_resp(conn, 200, File.read!("_site/#{file}"))
   end
 end

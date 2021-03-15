@@ -21,7 +21,7 @@ defmodule Blog do
 
   defp make_posts() do
     get_posts()
-    |> raise_if_duplicates()
+    |> check_for_errors()
     |> save_posts()
   end
 
@@ -37,6 +37,13 @@ defmodule Blog do
     end)
   end
 
+  defp check_for_errors(posts) do
+    posts
+    |> raise_if_duplicates()
+    |> raise_if_index()
+    |> raise_if_blank()
+  end
+
   def raise_if_duplicates(posts) do
     post_slugs = Enum.map(posts, & &1.slug)
 
@@ -46,6 +53,28 @@ defmodule Blog do
       raise "Duplicate filenames detected. Aborting."
       System.halt(1)
     end
+  end
+
+  defp raise_if_index(posts) do
+    Enum.map(posts, fn post ->
+      if post.slug == "index" do
+        raise "'index' is not a valid slug"
+        System.halt(1)
+      else
+        post
+      end
+    end)
+  end
+
+  defp raise_if_blank(posts) do
+    Enum.map(posts, fn post ->
+      if post.slug == "" do
+        raise "slug cannot be blank"
+        System.halt(1)
+      else
+        post
+      end
+    end)
   end
 
   defp save_posts(posts) do

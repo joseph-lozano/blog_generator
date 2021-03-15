@@ -7,8 +7,10 @@ defmodule Blog.Post do
   typedstruct do
     field(:title, String.t(), enforce: true)
     field(:slug, String.t())
+    field(:description, String.t())
     field(:date, Date.t())
     field(:tags, list(String.t()))
+    field(:draft, boolean())
     field(:attrs, map())
     field(:content, String.t())
   end
@@ -21,8 +23,10 @@ defmodule Blog.Post do
     %__MODULE__{
       title: title(attrs),
       slug: slug(attrs, slug),
+      description: description(attrs, ""),
       date: date(attrs, date),
       tags: tags(attrs, []),
+      draft: draft(attrs, false),
       attrs: attrs(attrs),
       content: content
     }
@@ -34,11 +38,17 @@ defmodule Blog.Post do
   defp slug(%{"slug" => slug}, _), do: slug
   defp slug(_, slug), do: slug
 
+  defp description(%{"description" => description}, _), do: description
+  defp description(_, description), do: description
+
   defp date(%{"date" => date}, _), do: date
   defp date(_, date), do: date
 
   defp tags(%{"tags" => tags}, _), do: tags
   defp tags(_, tags), do: tags
+
+  defp draft(%{"draft" => draft}, _), do: draft
+  defp draft(_, draft), do: draft
 
   defp attrs(attrs) do
     Map.drop(attrs, ~w[title slug date tags]a)

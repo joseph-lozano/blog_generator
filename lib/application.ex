@@ -10,7 +10,7 @@ defmodule Blog.Application do
 
     opts = [strategy: :one_for_one, name: Blog.Supervisor]
 
-    Logger.info("Starting application...")
+    Logger.info("Starting application at http://localhost:4000")
 
     Supervisor.start_link(children, opts)
   end

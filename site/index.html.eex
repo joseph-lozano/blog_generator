@@ -1,22 +1,39 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-
-  <%# <title>Blog</title> %>
-  <meta name="description" content="My Blog">
-  <meta name="author" content="Joseph Lozano">
-
-  <link rel="stylesheet" href="styles.css">
-
-</head>
-
-<body>
-
-  <h1 class="bg-red-200">My Blog</h1>
-  <%= for post <- posts do %>
-    <a href="<%= "/#{post.slug}.html" %>"><%= post.title %></a>
-  <% end %>
-
-</body>
+  <head>
+    <title>Blog</title>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
+    <link rel="stylesheet" href="/styles.css"/>
+    <%# <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico'/> %>
+  </head>
+  <body>
+<header class="flex items-center justify-around flex-col md:flex-row mt-12 mx-32">
+    <a class="text-indigo-600 underline" href="/">Home</a>
+    <a class="text-indigo-600 underline" href="mailto:joseph@hey.com">joseph@hey.com</a>
+    <a class="text-indigo-600 underline" href="resume.pdf">Resume</a>
+  </header>
+  <div class="lg:mx-64 md:mx-32 sm:mx-16 mx-4 my-20">
+    <ul class="divide-y divide-gray-200">
+      <%= for post <- posts do %>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <img class="h-20 w-20 rounded-full" src="https://robohash.org/<%= post.slug %>" alt="Robo hash image">
+            <div class="lg:ml-10 ml-2">
+              <a href="<%= post.slug %>" class="text-gray-800 underline"><%= post.title %></a>
+                <%= if post.draft  do%>
+                  <span class="text-xs text-gray-400">draft</span>
+                <% end %>
+              <p class="text-sm text-gray-400"><%= post.description %></p>
+            </div>
+          </div>
+          <span class="text-sm text-gray-500 w-20 lg:w-36"><%= post.date %></span>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
+</div>
+  </body>
+</html>
