@@ -6,11 +6,15 @@ defmodule BlogGenerator.MixProject do
       app: :blog_generator,
       version: "0.1.0",
       elixir: "~> 1.11",
+      elixirc_options: elixirc_options(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix]]
     ]
   end
+
+  defp elixirc_options(:dev), do: []
+  defp elixirc_options(_), do: [warnings_as_errors: true]
 
   # Run "mix help compile.app" to learn about applications.
   def application do

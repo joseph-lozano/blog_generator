@@ -64,7 +64,8 @@ defmodule Mix.Tasks.Blog.Build do
     File.write("#{@dest_dir}/index.html", content, [:write, :utf8])
   end
 
+  @spec date(String.t(), String.t(), String.t()) :: Date.t()
   defp date(year, month, day) do
-    Date.new(String.to_integer(year), String.to_integer(month), String.to_integer(day))
+    Date.new!(String.to_integer(year), String.to_integer(month), String.to_integer(day))
   end
 end
