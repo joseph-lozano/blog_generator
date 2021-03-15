@@ -8,9 +8,11 @@ defmodule Blog do
   @dest_dir "_site"
 
   def make() do
+    Application.ensure_all_started(:makeup_elixir)
+
     make_directory()
 
-    copy_resume()
+    copy_static()
 
     posts = make_posts()
 
@@ -21,8 +23,17 @@ defmodule Blog do
     File.mkdir(@dest_dir)
   end
 
+  defp copy_static() do
+    copy_resume()
+    copy_css()
+  end
+
   defp copy_resume() do
     File.cp!("#{@source_dir}/resume.pdf", "#{@dest_dir}/resume.pdf")
+  end
+
+  defp copy_css() do
+    File.cp!("#{@source_dir}/styles/monokai.css", "#{@dest_dir}/monokai.css")
   end
 
   defp make_posts() do
@@ -85,7 +96,10 @@ defmodule Blog do
 
   defp save_posts(posts) do
     Enum.map(posts, fn post ->
-      inner_content = Earmark.as_html!(post.content)
+      inner_content =
+        post.content
+        |> Earmark.as_html!()
+        |> Blog.Highlighter.highlight()
 
       content =
         EEx.eval_file("#{@source_dir}/post.html.eex", post: post, inner_content: inner_content)

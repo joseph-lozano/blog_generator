@@ -11,8 +11,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
     <link rel="stylesheet" href="/styles.css"/>
+    <link rel="stylesheet" href="/monokai.css" >
     <%# <script src="/js/alpine.js?v={% version %}"></script> %>
-    <link href="https://unpkg.com/prismjs@1.20.0/themes/prism-okaidia.css" rel="stylesheet">
   </head>
   <body>
     <header class="flex sm:flex-row flex-col items-center justify-around mt-12 mx-32">

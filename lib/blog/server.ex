@@ -16,6 +16,10 @@ defmodule Blog.Server do
     send_file(conn, "styles.css")
   end
 
+  get("/monokai.css") do
+    send_file(conn, "monokai.css")
+  end
+
   get("/resume.pdf") do
     send_file(conn, "resume.pdf")
   end

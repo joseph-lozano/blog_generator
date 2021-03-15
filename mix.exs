@@ -30,10 +30,11 @@ defmodule Blog.MixProject do
     [
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
+      {:plug_cowboy, "~> 2.0", only: [:dev]},
       {:earmark, "~> 1.4"},
       {:yaml_elixir, "~> 2.6"},
       {:typed_struct, "~> 0.2.1"},
-      {:plug_cowboy, "~> 2.0", only: [:dev]}
+      {:makeup_elixir, "~> 0.15.1"}
     ]
   end
 end
