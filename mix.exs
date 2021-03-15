@@ -19,6 +19,7 @@ defmodule Blog.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
+      mod: {Blog.Application, []},
       extra_applications: [:logger]
     ]
   end
@@ -30,7 +31,8 @@ defmodule Blog.MixProject do
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:earmark, "~> 1.4"},
       {:yaml_elixir, "~> 2.6"},
-      {:typed_struct, "~> 0.2.1"}
+      {:typed_struct, "~> 0.2.1"},
+      {:plug_cowboy, "~> 2.0"}
     ]
   end
 end
