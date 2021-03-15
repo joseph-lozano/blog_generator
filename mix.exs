@@ -24,7 +24,9 @@ defmodule BlogGenerator.MixProject do
     [
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:eex_html, "~> 1.0"},
-      {:earmark, "~> 1.4"}
+      {:earmark, "~> 1.4"},
+      {:yaml_elixir, "~> 2.6"},
+      {:typed_struct, "~> 0.2.1"}
     ]
   end
 end

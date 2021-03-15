@@ -16,7 +16,7 @@
 
   <h1 class="bg-red-200">My Blog</h1>
   <%= for post <- posts do %>
-    <a href="<%= "/#{post}" %>"><%= post %></a>
+    <a href="<%= "/#{post.slug}" %>"><%= post.title %></a>
   <% end %>
 
 </body>
