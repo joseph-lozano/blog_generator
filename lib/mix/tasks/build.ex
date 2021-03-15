@@ -33,7 +33,7 @@ defmodule Mix.Tasks.Blog.Build do
 
       "#{@source_dir}/posts/#{post}"
       |> File.read!()
-      |> Blog.Post.parse(date(year, month, day), slug)
+      |> Post.parse(date(year, month, day), slug)
     end)
   end
 
