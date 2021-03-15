@@ -10,6 +10,8 @@ defmodule Blog do
   def make() do
     make_directory()
 
+    copy_resume()
+
     posts = make_posts()
 
     make_index(posts)
@@ -17,6 +19,10 @@ defmodule Blog do
 
   defp make_directory() do
     File.mkdir(@dest_dir)
+  end
+
+  defp copy_resume() do
+    File.cp!("#{@source_dir}/resume.pdf", "#{@dest_dir}/resume.pdf")
   end
 
   defp make_posts() do
@@ -81,7 +87,9 @@ defmodule Blog do
     Enum.map(posts, fn post ->
       inner_content = Earmark.as_html!(post.content)
 
-      content = EEx.eval_file("#{@source_dir}/post.html.eex", inner_content: inner_content)
+      content =
+        EEx.eval_file("#{@source_dir}/post.html.eex", post: post, inner_content: inner_content)
+
       File.write("#{@dest_dir}/#{post.slug}.html", content, [:write, :utf8])
 
       post
