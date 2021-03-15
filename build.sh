@@ -66,5 +66,5 @@ mix deps.get --only prod
 mix blog.build
 
 # assets
-npm install
+npm ci
 npm run build
