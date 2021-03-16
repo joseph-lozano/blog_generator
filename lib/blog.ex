@@ -41,22 +41,34 @@ defmodule Blog do
     File.cp!("#{@source_dir}/favicon.ico", "#{@dest_dir}/favicon.ico")
   end
 
+  def make_post(file_path) do
+    file_path
+    |> get_post()
+    |> save_post()
+  end
+
   defp make_posts() do
     get_posts()
     |> check_for_errors()
     |> save_posts()
   end
 
-  def get_posts() do
-    "#{@source_dir}/posts"
-    |> File.ls!()
-    |> Enum.map(fn post ->
-      [year, month, day, slug] = post |> Path.rootname() |> String.split("-", parts: 4)
+  def get_post(path) do
+    [year, month, day, slug] =
+      path
+      |> Path.basename()
+      |> Path.rootname()
+      |> String.split("-", parts: 4)
 
-      "#{@source_dir}/posts/#{post}"
-      |> File.read!()
-      |> Post.parse(date(year, month, day), slug)
-    end)
+    path
+    |> File.read!()
+    |> Post.parse(date(year, month, day), slug)
+  end
+
+  def get_posts() do
+    "#{@source_dir}/posts/*.md"
+    |> Path.wildcard()
+    |> Enum.map(&get_post/1)
   end
 
   defp check_for_errors(posts) do
@@ -99,20 +111,22 @@ defmodule Blog do
     end)
   end
 
+  defp save_post(%Blog.Post{} = post) do
+    inner_content =
+      post.content
+      |> Earmark.as_html!()
+      |> Blog.Highlighter.highlight()
+
+    content =
+      EEx.eval_file("#{@source_dir}/post.html.eex", post: post, inner_content: inner_content)
+
+    File.write("#{@dest_dir}/#{post.slug}.html", content, [:write])
+
+    post
+  end
+
   defp save_posts(posts) do
-    Enum.map(posts, fn post ->
-      inner_content =
-        post.content
-        |> Earmark.as_html!()
-        |> Blog.Highlighter.highlight()
-
-      content =
-        EEx.eval_file("#{@source_dir}/post.html.eex", post: post, inner_content: inner_content)
-
-      File.write("#{@dest_dir}/#{post.slug}.html", content, [:write])
-
-      post
-    end)
+    Enum.map(posts, &save_post/1)
   end
 
   defp make_index(posts) do
