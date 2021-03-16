@@ -69,6 +69,5 @@ mix deps.get --only prod
 # Build
 mix blog.build
 
-# assets
-npm ci
-npm run build
+# tailwind assets
+NODE_ENV=production npx tailwindcss-cli@latest build ./site/styles/tailwind.css -o ./_site/styles.css
