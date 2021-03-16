@@ -56,8 +56,9 @@ cd "$PROJECT_DIR"
 
 export MIX_ENV=PROD
 
-# We don't need the server and leaving it in causes compilation issues
+# We don't need the server or watcher and leaving them in causes compilation issues
 rm lib/blog/server.ex
+rm lib/blog/watcher.ex
 
 # Install hex and rebar"
 mix local.hex --force

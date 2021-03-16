@@ -14,9 +14,9 @@ defmodule Blog do
 
     copy_static()
 
-    posts = make_posts()
+    make_posts()
 
-    make_index(posts)
+    make_index()
   end
 
   defp make_directory() do
@@ -47,7 +47,7 @@ defmodule Blog do
     |> save_post()
   end
 
-  defp make_posts() do
+  def make_posts() do
     get_posts()
     |> check_for_errors()
     |> save_posts()
@@ -129,7 +129,8 @@ defmodule Blog do
     Enum.map(posts, &save_post/1)
   end
 
-  defp make_index(posts) do
+  def make_index() do
+    posts = get_posts()
     content = EEx.eval_file("#{@source_dir}/index.html.eex", posts: posts)
     File.write("#{@dest_dir}/index.html", content, [:write])
   end

@@ -5,7 +5,8 @@ defmodule Blog.Application do
 
   def start(_type, _args) do
     children = [
-      {Plug.Cowboy, scheme: :http, plug: Blog.Server, options: [port: 4000]}
+      {Plug.Cowboy, scheme: :http, plug: Blog.Server, options: [port: 4000]},
+      {Blog.Watcher, []}
     ]
 
     opts = [strategy: :one_for_one, name: Blog.Supervisor]
