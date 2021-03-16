@@ -54,7 +54,7 @@ export PATH=$PATH:"$ELIXIR_HOME/bin"
 
 cd "$PROJECT_DIR"
 
-export MIX_ENV=PROD
+export MIX_ENV=prod
 
 # We don't need the server or watcher and leaving them in causes compilation issues
 rm lib/blog/server.ex

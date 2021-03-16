@@ -130,13 +130,25 @@ defmodule Blog do
   end
 
   def make_index() do
-    posts = get_posts()
+    posts =
+      get_posts()
+      |> Enum.sort_by(& &1.date, {:desc, Date})
+      |> Enum.filter(&show_draft?/1)
+
     content = EEx.eval_file("#{@source_dir}/index.html.eex", posts: posts)
+
     File.write("#{@dest_dir}/index.html", content, [:write])
   end
 
   @spec date(String.t(), String.t(), String.t()) :: Date.t()
   defp date(year, month, day) do
     Date.new!(String.to_integer(year), String.to_integer(month), String.to_integer(day))
+  end
+
+  defp show_draft?(%Post{draft: draft}) do
+    published? = !draft
+    prod? = Mix.env() == :prod
+
+    published? or not prod?
   end
 end

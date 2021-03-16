@@ -29,6 +29,7 @@ defmodule Blog.MixProject do
         "build"
       ],
       serve: [
+        "build_clean",
         "blog.server"
       ]
     ]
