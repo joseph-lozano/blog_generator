@@ -24,6 +24,10 @@ defmodule Blog.Server do
     send_file(conn, "resume.pdf")
   end
 
+  get("/favicon.ico") do
+    send_file(conn, "favicon.ico")
+  end
+
   get "/:slug" do
     file = "_site/#{slug}.html"
 

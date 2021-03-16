@@ -9,6 +9,7 @@ defmodule Blog.MixProject do
       elixir: "~> 1.11",
       elixirc_options: elixirc_options(Mix.env()),
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps(),
       dialyzer: [plt_add_apps: [:mix, :eex]]
     ]
@@ -16,6 +17,22 @@ defmodule Blog.MixProject do
 
   defp elixirc_options(:dev), do: []
   defp elixirc_options(_), do: [warnings_as_errors: true]
+
+  def aliases() do
+    [
+      build: [
+        "blog.build",
+        "cmd NODE_ENV=production npx tailwindcss-cli@latest build ./site/styles/tailwind.css -o ./_site/styles.css"
+      ],
+      build_clean: [
+        "cmd rm -rf _site",
+        "build"
+      ],
+      serve: [
+        "blog.server"
+      ]
+    ]
+  end
 
   # Run "mix help compile.app" to learn about applications.
   def application do

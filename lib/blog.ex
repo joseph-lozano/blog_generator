@@ -26,6 +26,7 @@ defmodule Blog do
   defp copy_static() do
     copy_resume()
     copy_css()
+    copy_favicon()
   end
 
   defp copy_resume() do
@@ -34,6 +35,10 @@ defmodule Blog do
 
   defp copy_css() do
     File.cp!("#{@source_dir}/styles/monokai.css", "#{@dest_dir}/monokai.css")
+  end
+
+  defp copy_favicon() do
+    File.cp!("#{@source_dir}/favicon.ico", "#{@dest_dir}/favicon.ico")
   end
 
   defp make_posts() do
