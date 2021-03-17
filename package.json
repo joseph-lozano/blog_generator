@@ -1,0 +1,14 @@
+{
+  "scripts": {
+    "build": "NODE_ENV=production postcss site/styles/tailwind.css -o _site/styles.css",
+    "watch": "postcss -w site/styles/tailwind.css -o _site/styles.css"
+  },
+  "devDependencies": {
+    "@tailwindcss/jit": "^0.1.1",
+    "@tailwindcss/typography": "^0.4.0",
+    "autoprefixer": "^10.2.5",
+    "postcss": "^8.2.8",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.0.3"
+  }
+}

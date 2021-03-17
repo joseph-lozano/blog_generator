@@ -16,14 +16,12 @@ else
   echo "Using Elixir $ELIXIR_VERSION"
 fi
 
-
 export ERLANG_HOME="$XDG_CACHE_HOME/erlang/$ERLANG_VERSION"
 mkdir -p "$ERLANG_HOME"
 export ELIXIR_HOME="$XDG_CACHE_HOME/elixir/$ELIXIR_VERSION"
 mkdir -p "$ELIXIR_HOME"
 
 export PROJECT_DIR="$(pwd)"
-
 
 if [ -d "$ERLANG_HOME/bin" ]; then
   echo "Erlang already installed"
@@ -42,7 +40,6 @@ fi
 
 export PATH=$PATH:"$ERLANG_HOME/bin"
 
-
 if [ -d "$ELIXIR_HOME/bin" ]; then
   echo "Elixir $ELIXIR_VERSION already installed"
 else
@@ -56,10 +53,6 @@ cd "$PROJECT_DIR"
 
 export MIX_ENV=prod
 
-# We don't need the server or watcher and leaving them in causes compilation issues
-rm lib/blog/server.ex
-rm lib/blog/watcher.ex
-
 # Install hex and rebar"
 mix local.hex --force
 mix local.rebar --force
@@ -71,4 +64,4 @@ mix deps.get --only prod
 mix blog.build
 
 # tailwind assets
-NODE_ENV=production npx tailwindcss-cli@latest build ./site/styles/tailwind.css -o ./_site/styles.css
+NODE_ENV=production npm run build

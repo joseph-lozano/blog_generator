@@ -22,15 +22,14 @@ defmodule Blog.MixProject do
     [
       build: [
         "blog.build",
-        "cmd NODE_ENV=production npx tailwindcss-cli@latest build ./site/styles/tailwind.css -o ./_site/styles.css"
+        "cmd npm run build"
       ],
       build_clean: [
         "cmd rm -rf _site",
         "build"
       ],
-      serve: [
-        "build_clean",
-        "blog.server"
+      server: [
+        "cmd ./server.sh"
       ]
     ]
   end
