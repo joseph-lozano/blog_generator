@@ -44,7 +44,7 @@ def resolve({name_a, seed_a} = team_a, {name_b, seed_b} = team_b) do
     IO.puts "#{name_a} beats #{name_b}"
     team_a
   else
-    IO.puts "#{name_b}lbeats #{name_a}"
+    IO.puts "#{name_b} beats #{name_a}"
     team_b
   end
 end
