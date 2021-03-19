@@ -1,8 +1,10 @@
 ---
 title: I created a March Madness predictor CLI, then turned it into a web app.
-description: A one-night project
+description: I should have done this a week earlier.
 tags: post project
 ---
+
+**tl;dr** It's deployed at https://ncaa-predictor.onrender.com
 
 First step was getting the bracket done. The NCAA Tournament is broken into 4 regions, each containing 16 teams seeded 1 through 16.
 
