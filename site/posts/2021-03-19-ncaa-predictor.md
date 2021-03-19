@@ -26,7 +26,7 @@ The 1 seeded team, plays the 16 seeded team, the 2 plays 15, etc. The tournament
 Next, we recursivlely resolve the games, until there is only 1 left.
 
 ```elixir
-def resolve(matchups) when is_list(matchups) do
+def resolve([ _ | _ ] = matchups) do
   matchups
   |> Enum.map(fn [team_a, team_b] -> resolve(team_a, team_b) end)
   |> Enum.chunk_every(2)
@@ -43,6 +43,9 @@ def resolve({name_a, seed_a} = team_a, {name_b, seed_b} = team_b) do
   if seed_a < seed_b do
     IO.puts "#{name_a} beats #{name_b}"
     team_a
+  else
+    IO.puts "#{name_b}lbeats #{name_a}"
+    team_b
   end
 end
 ```
@@ -50,8 +53,9 @@ end
 And our base case
 
 ```elixir
-def resolve({name, _seed} = team) do
+def resolve([{name, _seed} = team]) do
   IO.puts "#{name} wins!"
+  team
 end
 ```
 
