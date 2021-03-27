@@ -28,7 +28,7 @@
               <p class="text-sm text-gray-400"><%= post.description %></p>
             </div>
           </div>
-          <span class="text-sm text-gray-500 w-20 lg:w-36"><%= post.date %></span>
+          <span class="text-sm text-gray-500 w-20 lg:w-36"><%= Calendar.strftime(post.date, "%b %d, %Y") %></span>
         </div>
       </li>
     <% end %>
