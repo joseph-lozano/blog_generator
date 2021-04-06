@@ -15,11 +15,7 @@
     <%# <script src="/js/alpine.js?v={% version %}"></script> %>
   </head>
   <body>
-    <header class="flex sm:flex-row flex-col items-center justify-around mt-12 mx-32">
-      <a class="text-indigo-600 underline" href="/">Home</a>
-      <a class="text-indigo-600 underline" href="mailto:joseph@hey.com">joseph@hey.com</a>
-      <a class="text-indigo-600 underline" href="resume.pdf">Resume</a>
-    </header>
+    <%= render.("site/_header.html.eex", []) %>
     <div class="relative py-16 bg-white overflow-hidden">
       <div class="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
         <div class="relative h-full text-lg max-w-prose mx-auto" aria-hidden="true">
@@ -61,7 +57,7 @@
             </span>
           </h1>
         </div>
-        <div class="mt-6 prose prose-indigo prose-lg text-gray-500 mx-auto">
+        <div class="mt-6 prose prose-indigo prose-lg text-gray-700 mx-auto">
           <%= inner_content %>
         </div>
       </div>

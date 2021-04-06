@@ -1,0 +1,6 @@
+<header class="flex items-center justify-around flex-col md:flex-row mt-12 mx-32">
+  <a class="text-indigo-600 underline" href="/">Home</a>
+  <a class="text-indigo-600 underline" href="now">What I'm doing now</a>
+  <a class="text-indigo-600 underline" href="mailto:joseph@hey.com">Email me</a>
+  <a class="text-indigo-600 underline" href="resume.pdf">Resume</a>
+</header>

@@ -27,6 +27,25 @@ defmodule Blog do
     copy_resume()
     copy_css()
     copy_favicon()
+    copy_markdown()
+  end
+
+  def copy_markdown() do
+    Path.wildcard("#{@source_dir}/*.md")
+    |> Enum.each(fn file ->
+      [yaml, inner_content] = file |> File.read!() |> String.split("---", parts: 2, trim: true)
+      attrs = YamlElixir.read_from_string!(yaml)
+      %{"title" => title, "slug" => slug} = attrs
+
+      content =
+        EEx.eval_file("#{@source_dir}/post.html.eex",
+          post: %{title: title, description: nil, draft: false},
+          inner_content: inner_content,
+          render: &EEx.eval_file/2
+        )
+
+      File.write("#{@dest_dir}/#{slug}.html", content, [:write])
+    end)
   end
 
   defp copy_resume() do
@@ -118,7 +137,11 @@ defmodule Blog do
       |> Blog.Highlighter.highlight()
 
     content =
-      EEx.eval_file("#{@source_dir}/post.html.eex", post: post, inner_content: inner_content)
+      EEx.eval_file("#{@source_dir}/post.html.eex",
+        post: post,
+        inner_content: inner_content,
+        render: &EEx.eval_file/2
+      )
 
     File.write("#{@dest_dir}/#{post.slug}.html", content, [:write])
 
@@ -135,7 +158,11 @@ defmodule Blog do
       |> Enum.sort_by(& &1.date, {:desc, Date})
       |> Enum.filter(&show_draft?/1)
 
-    content = EEx.eval_file("#{@source_dir}/index.html.eex", posts: posts)
+    content =
+      EEx.eval_file("#{@source_dir}/index.html.eex",
+        posts: posts,
+        render: &EEx.eval_file/2
+      )
 
     File.write("#{@dest_dir}/index.html", content, [:write])
   end

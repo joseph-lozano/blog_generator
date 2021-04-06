@@ -6,14 +6,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
     <link rel="stylesheet" href="/styles.css"/>
-    <%# <link rel='shortcut icon' type='image/x-icon' href='/favicon.ico'/> %>
   </head>
   <body>
-<header class="flex items-center justify-around flex-col md:flex-row mt-12 mx-32">
-    <a class="text-indigo-600 underline" href="/">Home</a>
-    <a class="text-indigo-600 underline" href="mailto:joseph@hey.com">joseph@hey.com</a>
-    <a class="text-indigo-600 underline" href="resume.pdf">Resume</a>
-  </header>
+  <%= render.("site/_header.html.eex", []) %>
   <div class="lg:mx-64 md:mx-32 sm:mx-16 mx-4 my-20">
     <ul class="divide-y divide-gray-200">
       <%= for post <- posts do %>
