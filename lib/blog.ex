@@ -24,21 +24,18 @@ defmodule Blog do
   end
 
   defp copy_static() do
-    copy_resume()
     copy_css()
-    copy_favicon()
-  end
-
-  defp copy_resume() do
-    File.cp!("#{@source_dir}/resume.pdf", "#{@dest_dir}/resume.pdf")
+    copy_file("resume.pdf")
+    copy_file("keybase.txt")
+    copy_file("favicon.ico")
   end
 
   defp copy_css() do
     File.cp!("#{@source_dir}/styles/monokai.css", "#{@dest_dir}/monokai.css")
   end
 
-  defp copy_favicon() do
-    File.cp!("#{@source_dir}/favicon.ico", "#{@dest_dir}/favicon.ico")
+  defp copy_file(file) do
+    File.cp!(Path.join([@source_dir, file]), Path.join([@dest_dir, file]))
   end
 
   def make_post(file_path) do

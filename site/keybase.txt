@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/jetpackjoe
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://joseph.engineering
+  * I am jetpackjoe (https://keybase.io/jetpackjoe) on keybase.
+  * I have a public key ASCYsTRdKLyS3voBpRATP3_kpsKAdrkAfk0ovI8Il7Q_HAo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120d74993c0de1efcb82737722c687996adc080f3d40f0d1cacb26a26404004280b0a",
+      "host": "keybase.io",
+      "kid": "012098b1345d28bc92defa01a510133f7fe4a6c28076b9007e4d28bc8f0897b43f1c0a",
+      "uid": "03765f57edc22f716a3b4a5f7c622319",
+      "username": "jetpackjoe"
+    },
+    "merkle_root": {
+      "ctime": 1617854214,
+      "hash": "d1f7e83c8f4d8aa793a0717251da9cc4d9b9109616b6e0cc998ca6aa400eb0a9e89df41f5098c3a2d224cb9948197516048619d299aa4e460c1135bf648d5b69",
+      "hash_meta": "f81c531af1faa3a7bd2c00cabe23f54d7c80a097b1cf24dd316581a15d49f3a4",
+      "seqno": 19574892
+    },
+    "service": {
+      "entropy": "PgLs14P12oJkPIVwm06nJAFv",
+      "hostname": "joseph.engineering",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.6.2"
+  },
+  "ctime": 1617854241,
+  "expire_in": 504576000,
+  "prev": "cd6cb390d5ee46cc335329a1c008de5661bc704210f1ceaceba925875f2b1e56",
+  "seqno": 148,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgmLE0XSi8kt76AaUQEz9/5KbCgHa5AH5NKLyPCJe0PxwKp3BheWxvYWTES5cCzJTEIM1ss5DV7kbMM1MpocAI3lZhvHBCEPHOrOupJYdfKx5WxCAuTT88xvDOJ+yQkEVRb9HofR+rNFqypS4ASKVF6IU69QIBwqNzaWfEQLJIFiLugkFy+9Wed6QeAo7/hx0YWHyGWIVH1i46dnY2uf/SOiFtlNK+1Al7ZPDPhnide/SocRqemZw3WpWdgAqoc2lnX3R5cGUgpGhhc2iCpHR5cGUIpXZhbHVlxCCTzvgya1PX5GMFV1D6pL3iSLDn5+Z4djKHYT1XRi4e0aN0YWfNAgKndmVyc2lvbgE=
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jetpackjoe
+
+==================================================================
