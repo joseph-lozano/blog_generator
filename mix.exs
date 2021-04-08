@@ -29,7 +29,7 @@ defmodule Blog.MixProject do
         "build"
       ],
       server: [
-        "cmd ./server.sh"
+        "cmd scripts/server.sh"
       ]
     ]
   end
