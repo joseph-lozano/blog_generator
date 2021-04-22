@@ -3,4 +3,4 @@ title: "What I am doing now"
 slug: "now"
 ---
 
-Starting something new April 12.
+I am a Senior Software Consultant at [Test Double](https://testdouble.com).

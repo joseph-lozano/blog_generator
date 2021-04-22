@@ -35,8 +35,14 @@ defmodule Blog do
   def copy_markdown() do
     Path.wildcard("#{@source_dir}/*.md")
     |> Enum.each(fn file ->
-      [yaml, inner_content] = file |> File.read!() |> String.split("---", parts: 2, trim: true)
+      [yaml, md] = file |> File.read!() |> String.split("---", parts: 2, trim: true)
       attrs = YamlElixir.read_from_string!(yaml)
+
+      inner_content =
+        md
+        |> Earmark.as_html!()
+        |> Blog.Highlighter.highlight()
+
       %{"title" => title, "slug" => slug} = attrs
 
       content =
