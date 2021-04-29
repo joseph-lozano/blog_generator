@@ -47,7 +47,7 @@ defmodule Blog do
 
       content =
         EEx.eval_file("#{@source_dir}/post.html.eex",
-          post: %{title: title, description: nil, draft: false},
+          post: %{title: title, description: nil, date: nil, draft: false},
           inner_content: inner_content,
           render: &EEx.eval_file/2
         )
