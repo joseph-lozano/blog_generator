@@ -29,6 +29,10 @@ if Mix.env() != :prod do
       send_file(conn, "favicon.ico")
     end
 
+    get("/pgp.asc") do
+      send_file(conn, "pgp.asc")
+    end
+
     get "/:slug" do
       file = "_site/#{slug}.html"
 

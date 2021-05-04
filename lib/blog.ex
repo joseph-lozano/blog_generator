@@ -28,7 +28,7 @@ defmodule Blog do
     copy_file("resume.pdf")
     copy_file("keybase.txt")
     copy_file("favicon.ico")
-    copy_file("E8A63D71.asc")
+    copy_file("pgp.asc")
     copy_markdown()
   end
 
